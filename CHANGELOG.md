@@ -1,6 +1,18 @@
 # 更新记录 
 
 
+### [0.0.10](https://github.com/782042369/split-chunks/compare/v0.0.9...v0.0.10) (2025-07-16)
+
+
+### 👷 Continuous Integration | CI/CD 配置
+
+* **release:** 更新 release 脚本以推送 git 标签 ([111a28f](https://github.com/782042369/split-chunks/commit/111a28f32df393978db83299d655a23ae33bad26))
+
+
+### ♻️ Code Refactoring | 代码重构
+
+* **splitChunks:** 更新代码分割配置 ([79d2cc9](https://github.com/782042369/split-chunks/commit/79d2cc9b61a9b186ee5f2a99e12f56c588040718))
+
 ### [0.0.9](https://github.com/782042369/split-chunks/compare/v0.0.8...v0.0.9) (2025-07-16)
 
 
