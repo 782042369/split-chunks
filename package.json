@@ -15,7 +15,8 @@
     "release": "standard-version && npm publish"
   },
   "files": [
-    "es"
+    "es",
+    "README.md"
   ],
   "repository": {
     "type": "git",
