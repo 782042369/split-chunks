@@ -1,0 +1,39 @@
+{
+  "name": "@buzheng/rolldown-vite-split-chunks",
+  "version": "0.0.0",
+  "description": "rolldown-vite split chunks plugin",
+  "main": "es/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "watch": "cross-env NODE_ENV=development tsdown",
+    "build": "cross-env NODE_ENV=production tsdown",
+    "lint": "eslint --fix"
+  },
+  "files": [
+    "es"
+  ],
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=8"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.17.0",
+    "@types/node": "^20.19.8",
+    "cross-env": "^7.0.3",
+    "es-module-lexer": "^1.7.0",
+    "eslint-plugin-format": "^1.0.1",
+    "tsdown": "^0.12.9",
+    "vite": "^7.0.4",
+    "rolldown-vite": "^7.0.4"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "npm:rolldown-vite@latest"
+    }
+  }
+}

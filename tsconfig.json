@@ -1,0 +1,34 @@
+{
+"compilerOptions": {
+    "target": "ESNext", // 指定 ECMAScript 目标版本，使用最新的 ES 特性
+    "jsx": "preserve", // JSX 代码保留，交给其他转换器处理，如 Babel
+    "lib": ["ESNext", "DOM", "DOM.Iterable"], // 包含的库文件
+    "useDefineForClassFields": true, // 使用原生的类字段定义
+    "experimentalDecorators": true, // 启用实验性的装饰器支持
+    "baseUrl": ".", // 解析非相对模块名的基准目录
+    "module": "ESNext", // 使用最新的模块标准
+    "moduleResolution": "Node", // 使用 Node.js 风格的模块解析
+    "resolveJsonModule": true, // 允许导入 JSON 模块
+    "strict": true, // 启用所有严格类型检查选项
+    "strictNullChecks": true, // 严格的 null 检查
+    "noImplicitAny": false, // 允许变量隐式具有 'any' 类型
+    "noImplicitThis": true, // 不允许 'this' 隐式具有 'any' 类型
+    "noUnusedLocals": true, // 报告未使用的本地变量错误
+    "noUnusedParameters": true, // 检测未使用的函数参数
+    "declaration": true, // 生成 .d.ts 声明文件
+    "emitDeclarationOnly": true, // 只生成声明文件，不生成 JavaScript 代码
+    "preserveValueImports": false, // 禁止保留未使用的导入
+    "removeComments": false, // 不移除代码中的注释
+    "sourceMap": false, // 生成 source map 文件，便于调试
+    "allowSyntheticDefaultImports": true, // 允许默认导入没有默认导出的模块
+    "esModuleInterop": true, // 允许导入符合 ES6 标准的模块
+    "isolatedModules": true, // 每个文件都作为单独的模块进行编译
+    "skipLibCheck": false, // 跳过库文件的类型检查
+    "declarationDir": "es", // 声明文件输出目录,
+    "outDir": "es",
+    "rootDir": "." // 项目根目录
+  },
+  "include": [
+    "src/**/*.ts" // 包含的 TypeScript 文件
+  ]
+}
