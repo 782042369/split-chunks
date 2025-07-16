@@ -1,10 +1,3 @@
-/*
- * @Author: yanghongxuan
- * @Date: 2025-02-28 17:35:18
- * @Description:
- * @LastEditTime: 2025-04-10 14:16:13
- * @LastEditors: yanghongxuan
- */
 import { defineConfig } from 'tsdown'
 
 export default defineConfig({
