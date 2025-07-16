@@ -5,7 +5,7 @@
  * @LastEditTime: 2025-04-25 14:00:38
  * @LastEditors: yanghongxuan
  */
-import type { Plugin } from 'rolldown-vite'
+import type { Plugin } from 'vite'
 import type { ChunkingContext } from 'rolldown-vite/types/internal/rollupTypeCompat'
 
 import { init } from 'es-module-lexer'
