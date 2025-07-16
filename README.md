@@ -11,9 +11,9 @@ Vite插件，基于rolldown实现代码分割功能
 ## 安装
 
 ```bash
-npm install @buzheng/rolldown-vite-split-chunks
+npm install @xiaowaibuzheng/rolldown-vite-split-chunks
 # 或
-pnpm add @buzheng/rolldown-vite-split-chunks
+pnpm add @xiaowaibuzheng/rolldown-vite-split-chunks
 ```
 
 ## 使用方式
@@ -21,7 +21,7 @@ pnpm add @buzheng/rolldown-vite-split-chunks
 1. 在vite.config.ts中引入插件：
 
 ```ts
-import { splitChunks } from '@buzheng/rolldown-vite-split-chunks'
+import { splitChunks } from '@xiaowaibuzheng/rolldown-vite-split-chunks'
 
 export default defineConfig({
   plugins: [
