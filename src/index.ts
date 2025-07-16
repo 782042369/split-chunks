@@ -46,7 +46,7 @@ function generateManualChunks() {
 export const splitChunks = (
 ): Plugin => {
   return {
-    name: 'vite-plugin-chunk-split',
+    name: 'rolldown-vite-plugin-chunk-split',
     async config() {
       await init
       const manualChunks = generateManualChunks()
