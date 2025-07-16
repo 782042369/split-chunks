@@ -43,6 +43,7 @@
     "cross-env": "^7.0.3",
     "es-module-lexer": "^1.7.0",
     "eslint-plugin-format": "^1.0.1",
+    "lint-staged": "^16.1.2",
     "rolldown-vite": "^7",
     "standard-version": "^9.5.0",
     "tsdown": "^0.12.9",

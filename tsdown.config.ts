@@ -17,5 +17,5 @@ export default defineConfig({
   unbundle: true,
   external: [
     /es-module-lexer/,
-  ] // 排除的依赖项
+  ], // 排除的依赖项
 })
