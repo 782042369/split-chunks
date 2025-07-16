@@ -8,7 +8,7 @@ import path from 'node:path'
 import { staticImportedScan } from './staticImportScan'
 import { nodeName, normalizePath } from './utils'
 
-type NullValue<T = void> = T | undefined | null | void;
+type NullValue<T = void> = T | undefined | null | void
 
 type ManualChunksOption = (id: string, context: ChunkingContext) => string | NullValue
 function wrapCustomSplitConfig(manualChunks: ManualChunksOption) {
@@ -28,11 +28,11 @@ function generateManualChunks() {
       if (id.includes('node_modules')) {
         if (staticImportedScan(id, getModuleInfo, new Map(), [])) {
           return `p-${nodeName(id) ?? 'vender'
-            }`
+          }`
         }
         else {
           return `p-${nodeName(id) ?? 'vender'
-            }-async`
+          }-async`
         }
       }
       if (!id.includes('node_modules')) {
@@ -43,8 +43,7 @@ function generateManualChunks() {
   )
 }
 
-export const splitChunks = (
-): Plugin => {
+export function splitChunks(): Plugin {
   return {
     name: 'rolldown-vite-plugin-chunk-split',
     async config() {
@@ -54,15 +53,13 @@ export const splitChunks = (
         build: {
           rollupOptions: {
             output: {
-              // TODO: 配置项 暂时先用 manualChunks
-              manualChunks: manualChunks,
-              // advancedChunks: {
-              //   groups: [
-              //     {
-              //       name: wrapCustomSplitConfig,
-              //     },
-              //   ],
-              // },
+              advancedChunks: {
+                groups: [{
+                  name(moduleId, ctx) {
+                    return manualChunks(moduleId, { getModuleInfo: id => ctx.getModuleInfo(id) })
+                  },
+                }],
+              },
             },
           },
         },
