@@ -4,42 +4,62 @@ import type { Plugin } from 'vite'
 import { init } from 'es-module-lexer'
 import assert from 'node:assert'
 import path from 'node:path'
+import { createLogger } from 'vite'
 
+import { ASYNC_SUFFIX, NODE_MODULES, VENDOR_PREFIX } from './constants'
 import { staticImportedScan } from './staticImportScan'
 import { nodeName, normalizePath } from './utils'
 
-type NullValue<T = void> = T | undefined | null | void
+// 常量定义
 
-type ManualChunksOption = (id: string, context: ChunkingContext) => string | NullValue
-function wrapCustomSplitConfig(manualChunks: ManualChunksOption) {
-  assert(typeof manualChunks === 'function')
-  return (
-    moduleId: string,
-    { getModuleInfo }: ChunkingContext,
-  ) => {
-    return manualChunks(moduleId, { getModuleInfo })
+const logger = createLogger()
+
+// 类型定义提取
+type Nullable<T = void> = T | undefined | null | void
+type ManualChunksOption = (id: string, context: ChunkingContext) => Nullable<string>
+
+/**
+ * 包装自定义分割配置函数，增加类型安全
+ */
+function wrapCustomSplitConfig(manualChunks: ManualChunksOption): ManualChunksOption {
+  assert(typeof manualChunks === 'function', 'manualChunks must be a function')
+  return (moduleId: string, { getModuleInfo }: ChunkingContext) => {
+    try {
+      return manualChunks(moduleId, { getModuleInfo })
+    } catch (error: any) {
+      logger?.error(`Error in manualChunks for ${moduleId}:`, error)
+      return undefined
+    }
   }
 }
 
 const cwd = process.cwd()
-function generateManualChunks() {
+
+/**
+ * 生成手动分块策略
+ */
+function generateManualChunks(): ManualChunksOption {
   return wrapCustomSplitConfig(
-    (id: string, { getModuleInfo }: ChunkingContext): string | NullValue => {
-      if (id.includes('node_modules')) {
-        if (staticImportedScan(id, getModuleInfo, new Map(), [])) {
-          return `p-${nodeName(id) ?? 'vender'
-          }`
-        }
-        else {
-          return `p-${nodeName(id) ?? 'vender'
-          }-async`
-        }
+    (id: string, { getModuleInfo }: ChunkingContext): Nullable<string> => {
+      // 缓存路径分析结果
+      const isNodeModule = id.includes(NODE_MODULES)
+      const name = nodeName(id) ?? 'vendor'
+
+      if (isNodeModule) {
+        // 静态导入的node_modules模块
+        const isStaticImport = staticImportedScan(
+          id,
+          getModuleInfo,
+          new Map(),
+          []
+        )
+        return `${VENDOR_PREFIX}${name}${isStaticImport ? '' : ASYNC_SUFFIX}`
       }
-      if (!id.includes('node_modules')) {
-        const extname = path.extname(id)
-        return normalizePath(path.relative(cwd, id).replace(extname, ''))
-      }
-    },
+
+      // 项目代码模块
+      const extname = path.extname(id)
+      return normalizePath(path.relative(cwd, id).replace(extname, ''))
+    }
   )
 }
 
@@ -47,22 +67,30 @@ export function splitChunks(): Plugin {
   return {
     name: 'rolldown-vite-plugin-chunk-split',
     async config() {
-      await init
-      const manualChunks = generateManualChunks()
-      return {
-        build: {
-          rollupOptions: {
-            output: {
-              advancedChunks: {
-                groups: [{
-                  name(moduleId, ctx) {
-                    return manualChunks(moduleId, { getModuleInfo: id => ctx.getModuleInfo(id) })
-                  },
-                }],
+      try {
+        await init
+        const manualChunks = generateManualChunks()
+
+        return {
+          build: {
+            rollupOptions: {
+              output: {
+                advancedChunks: {
+                  groups: [{
+                    name(moduleId, ctx) {
+                      return manualChunks(moduleId, {
+                        getModuleInfo: id => ctx.getModuleInfo(id)
+                      })
+                    },
+                  }],
+                },
               },
             },
           },
-        },
+        }
+      } catch (error: any) {
+        logger?.error('Failed to initialize splitChunks plugin:', error)
+        throw error
       }
     },
   }
