@@ -1,12 +1,5 @@
-/*
- * @Author: yanghongxuan
- * @Date: 2025-04-23 15:00:35
- * @Description:
- * @LastEditTime: 2025-04-25 14:00:38
- * @LastEditors: yanghongxuan
- */
-import type { Plugin } from 'vite'
 import type { ChunkingContext } from 'rolldown-vite/types/internal/rollupTypeCompat'
+import type { Plugin } from 'vite'
 
 import { init } from 'es-module-lexer'
 import path from 'node:path'
@@ -40,13 +33,15 @@ export function splitChunk(): Plugin {
         build: {
           rollupOptions: {
             output: {
-              advancedChunks: {
-                groups: [
-                  {
-                    name: wrapCustomSplitConfig,
-                  },
-                ],
-              },
+              // TODO: 配置项 暂时先用 manualChunks
+              manualChunks: wrapCustomSplitConfig,
+              // advancedChunks: {
+              //   groups: [
+              //     {
+              //       name: wrapCustomSplitConfig,
+              //     },
+              //   ],
+              // },
             },
           },
         },

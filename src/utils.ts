@@ -1,10 +1,3 @@
-/*
- * @Author: yanghongxuan
- * @Date: 2025-04-23 15:00:35
- * @Description:
- * @LastEditTime: 2025-04-23 16:21:23
- * @LastEditors: yanghongxuan
- */
 import crypto from 'node:crypto'
 import os from 'node:os'
 import path from 'node:path'
