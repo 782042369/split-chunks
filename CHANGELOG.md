@@ -1,6 +1,18 @@
 # 更新记录 
 
 
+### [0.0.9](https://github.com/782042369/split-chunks/compare/v0.0.8...v0.0.9) (2025-07-16)
+
+
+### 📦‍ Build System | 打包构建
+
+* 更新包名依赖 ([4e58cd5](https://github.com/782042369/split-chunks/commit/4e58cd5801ca1bad0d440cb800b63a7d413b41df))
+
+
+### ♻️ Code Refactoring | 代码重构
+
+* 更新插件名称以符合 RollDown 项目要求 ([79f3dbc](https://github.com/782042369/split-chunks/commit/79f3dbced9ac2f725db98a2fd58b6c8f8513adf6))
+
 ### [0.0.8](https://github.com/782042369/split-chunks/compare/v0.0.7...v0.0.8) (2025-07-16)
 
 
