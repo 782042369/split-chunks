@@ -11,7 +11,7 @@
     "build": "cross-env NODE_ENV=production tsdown",
     "lint": "eslint --fix",
     "prepublishOnly": "pnpm run build",
-    "release": "standard-version && npm publish"
+    "release": "standard-version && npm publish && git push --tags"
   },
   "files": [
     "es",
