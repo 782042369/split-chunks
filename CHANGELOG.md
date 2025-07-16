@@ -1,6 +1,13 @@
 # 更新记录 
 
 
+### [0.0.8](https://github.com/782042369/split-chunks/compare/v0.0.7...v0.0.8) (2025-07-16)
+
+
+### ♻️ Code Refactoring | 代码重构
+
+* **src:** 重命名导出函数 ([15c3923](https://github.com/782042369/split-chunks/commit/15c3923ffa5d0a1f58c0bfbfecd63dd45942a0e1))
+
 ### [0.0.7](https://github.com/782042369/split-chunks/compare/v0.0.6...v0.0.7) (2025-07-16)
 
 
