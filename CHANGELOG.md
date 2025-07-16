@@ -1,6 +1,13 @@
 # 更新记录 
 
 
+### [0.0.7](https://github.com/782042369/split-chunks/compare/v0.0.6...v0.0.7) (2025-07-16)
+
+
+### ♻️ Code Refactoring | 代码重构
+
+* **chunk-split:** 重构代码以提高可维护性和可测试性 ([c8f4376](https://github.com/782042369/split-chunks/commit/c8f437658aed7bb039b59464fffd68f9d88e3a7e))
+
 ### [0.0.6](https://github.com/782042369/split-chunks/compare/v0.0.4...v0.0.6) (2025-07-16)
 
 
