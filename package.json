@@ -41,7 +41,6 @@
     "@antfu/eslint-config": "^4.17.0",
     "@types/node": "^20.19.8",
     "cross-env": "^7.0.3",
-    "es-module-lexer": "^1.7.0",
     "eslint-plugin-format": "^1.0.1",
     "lint-staged": "^16.1.2",
     "rolldown-vite": "^7",
@@ -53,5 +52,8 @@
     "overrides": {
       "vite": "npm:rolldown-vite@latest"
     }
+  },
+  "dependencies": {
+    "es-module-lexer": "^1.7.0"
   }
 }

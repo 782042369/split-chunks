@@ -21,7 +21,7 @@ pnpm add @buzheng/rolldown-vite-split-chunks
 1. 在vite.config.ts中引入插件：
 
 ```ts
-import splitChunks from '@buzheng/rolldown-vite-split-chunks'
+import { splitChunks } from '@buzheng/rolldown-vite-split-chunks'
 
 export default defineConfig({
   plugins: [
