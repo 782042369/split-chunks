@@ -1,4 +1,4 @@
-import { GetModuleInfo } from "rolldown-vite/types/internal/rollupTypeCompat"
+import type { GetModuleInfo } from 'rolldown-vite/types/internal/rollupTypeCompat'
 
 export function staticImportedScan(
   id: string,
