@@ -43,7 +43,7 @@ function generateManualChunks() {
   )
 }
 
-export default (
+export const splitChunks = (
 ): Plugin => {
   return {
     name: 'vite-plugin-chunk-split',
