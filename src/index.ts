@@ -3,12 +3,11 @@ import type { Plugin } from 'vite'
 
 import { init } from 'es-module-lexer'
 import assert from 'node:assert'
-import path from 'node:path'
 import { createLogger } from 'vite'
 
 import { ASYNC_SUFFIX, NODE_MODULES, VENDOR_PREFIX } from './constants'
 import { staticImportedScan } from './staticImportScan'
-import { nodeName, normalizePath } from './utils'
+import { nodeName } from './utils'
 
 // 常量定义
 
@@ -33,7 +32,6 @@ function wrapCustomSplitConfig(manualChunks: ManualChunksOption): ManualChunksOp
   }
 }
 
-const cwd = process.cwd()
 
 /**
  * 生成手动分块策略
@@ -56,9 +54,6 @@ function generateManualChunks(): ManualChunksOption {
         return `${VENDOR_PREFIX}${name}${isStaticImport ? '' : ASYNC_SUFFIX}`
       }
 
-      // 项目代码模块
-      const extname = path.extname(id)
-      return normalizePath(path.relative(cwd, id).replace(extname, ''))
     }
   )
 }
