@@ -1,6 +1,13 @@
 # 更新记录 
 
 
+### [0.0.12](https://github.com/782042369/split-chunks/compare/v0.0.11...v0.0.12) (2025-07-17)
+
+
+### ♻️ Code Refactoring | 代码重构
+
+* 简化手动分块策略生成逻辑 ([eeea4d9](https://github.com/782042369/split-chunks/commit/eeea4d9da7dfbd3142426cfb5868e573f3a010b7))
+
 ### [0.0.11](https://github.com/782042369/split-chunks/compare/v0.0.10...v0.0.11) (2025-07-17)
 
 
