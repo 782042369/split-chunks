@@ -1,6 +1,18 @@
 # 更新记录 
 
 
+### [0.0.11](https://github.com/782042369/split-chunks/compare/v0.0.10...v0.0.11) (2025-07-17)
+
+
+### ♻️ Code Refactoring | 代码重构
+
+* **src:** 重构代码以提高可维护性和性能 ([b7cd416](https://github.com/782042369/split-chunks/commit/b7cd4160545f8843c726647b06e7e3d8f8c5f050))
+
+
+### 📦‍ Build System | 打包构建
+
+* 在 tsdown 中排除 Vite 依赖 ([807e96d](https://github.com/782042369/split-chunks/commit/807e96d669af1bf46647ea6b89a2c0e34b4c3d1b))
+
 ### [0.0.10](https://github.com/782042369/split-chunks/compare/v0.0.9...v0.0.10) (2025-07-16)
 
 
