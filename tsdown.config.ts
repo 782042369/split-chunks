@@ -10,5 +10,6 @@ export default defineConfig({
   unbundle: true,
   external: [
     /es-module-lexer/,
+    /vite/
   ], // 排除的依赖项
 })
