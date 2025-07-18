@@ -16,7 +16,12 @@ const logger = createLogger()
 // 类型定义提取
 type Nullable<T = void> = T | undefined | null | void
 type ManualChunksOption = (id: string, context: ChunkingContext) => Nullable<string>
-
+type Options = {
+  /**  chunk prefix default : p-  */
+  vendor_prefix?: string
+  /**  async chunk suffix default : -async  */
+  async_suffix?: string
+}
 /**
  * 包装自定义分割配置函数，增加类型安全
  */
@@ -36,7 +41,7 @@ function wrapCustomSplitConfig(manualChunks: ManualChunksOption): ManualChunksOp
 /**
  * 生成手动分块策略
  */
-function generateManualChunks(): ManualChunksOption {
+function generateManualChunks(options?: Options): ManualChunksOption {
   return wrapCustomSplitConfig(
     (id: string, { getModuleInfo }: ChunkingContext): Nullable<string> => {
       // 缓存路径分析结果
@@ -51,20 +56,20 @@ function generateManualChunks(): ManualChunksOption {
           new Map(),
           []
         )
-        return `${VENDOR_PREFIX}${name}${isStaticImport ? '' : ASYNC_SUFFIX}`
+        return `${options?.vendor_prefix || VENDOR_PREFIX}${name}${isStaticImport ? '' : options?.async_suffix || ASYNC_SUFFIX}`
       }
 
     }
   )
 }
 
-export function splitChunks(): Plugin {
+export function splitChunks(options?: Options): Plugin {
   return {
     name: 'rolldown-vite-plugin-chunk-split',
     async config() {
       try {
         await init
-        const manualChunks = generateManualChunks()
+        const manualChunks = generateManualChunks(options)
 
         return {
           build: {
