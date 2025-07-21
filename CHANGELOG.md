@@ -1,6 +1,18 @@
 # 更新记录 
 
 
+### [0.0.13](https://github.com/782042369/split-chunks/compare/v0.0.12...v0.0.13) (2025-07-21)
+
+
+### ✨ Features | 新功能
+
+* **plugin:** 为 splitChunks 函数添加配置参数 ([0e3e193](https://github.com/782042369/split-chunks/commit/0e3e193b327463f197b7289e1ea592981e015a91))
+
+
+### 📝 Documentation | 文档
+
+* **README:** 更新文档内容，增加特性说明和高级配置选项 ([1de0623](https://github.com/782042369/split-chunks/commit/1de06233abff092b26885f587b2b5ea27cca99b5))
+
 ### [0.0.12](https://github.com/782042369/split-chunks/compare/v0.0.11...v0.0.12) (2025-07-17)
 
 
