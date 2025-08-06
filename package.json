@@ -7,8 +7,8 @@
   "types": "es/index.d.ts",
   "type": "module",
   "scripts": {
-    "watch": "cross-env NODE_ENV=development tsdown",
-    "build": "cross-env NODE_ENV=production tsdown",
+    "watch": "tsdown --watch",
+    "build":  "tsdown",
     "lint": "eslint --fix",
     "prepublishOnly": "pnpm run build",
     "release": "standard-version && npm publish && git push --tags"
@@ -40,7 +40,6 @@
   "devDependencies": {
     "@antfu/eslint-config": "^4.17.0",
     "@types/node": "^20.19.8",
-    "cross-env": "^7.0.3",
     "eslint-plugin-format": "^1.0.1",
     "lint-staged": "^16.1.2",
     "rolldown-vite": "^7",
