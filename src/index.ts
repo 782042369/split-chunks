@@ -16,7 +16,7 @@ const logger = createLogger()
 // 类型定义提取
 type Nullable<T = void> = T | undefined | null | void
 type ManualChunksOption = (id: string, context: ChunkingContext) => Nullable<string>
-type Options = {
+interface Options {
   /**  chunk prefix default : p-  */
   vendor_prefix?: string
   /**  async chunk suffix default : -async  */
@@ -30,13 +30,13 @@ function wrapCustomSplitConfig(manualChunks: ManualChunksOption): ManualChunksOp
   return (moduleId: string, { getModuleInfo }: ChunkingContext) => {
     try {
       return manualChunks(moduleId, { getModuleInfo })
-    } catch (error: any) {
+    }
+    catch (error: any) {
       logger?.error(`Error in manualChunks for ${moduleId}:`, error)
       return undefined
     }
   }
 }
-
 
 /**
  * 生成手动分块策略
@@ -54,12 +54,11 @@ function generateManualChunks(options?: Options): ManualChunksOption {
           id,
           getModuleInfo,
           new Map(),
-          []
+          [],
         )
         return `${options?.vendor_prefix || VENDOR_PREFIX}${name}${isStaticImport ? '' : options?.async_suffix || ASYNC_SUFFIX}`
       }
-
-    }
+    },
   )
 }
 
@@ -79,7 +78,7 @@ export function splitChunks(options?: Options): Plugin {
                   groups: [{
                     name(moduleId, ctx) {
                       return manualChunks(moduleId, {
-                        getModuleInfo: id => ctx.getModuleInfo(id)
+                        getModuleInfo: id => ctx.getModuleInfo(id),
                       })
                     },
                   }],
@@ -88,7 +87,8 @@ export function splitChunks(options?: Options): Plugin {
             },
           },
         }
-      } catch (error: any) {
+      }
+      catch (error: any) {
         logger?.error('Failed to initialize splitChunks plugin:', error)
         throw error
       }

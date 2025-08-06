@@ -2,20 +2,20 @@
 
 Vite插件，基于rolldown实现HTTP/2优化的node_modules分包方案
 
-##  ✨ 特性
+## ✨ 特性
 
 - 自动将node_modules拆分为多个chunk
 - 支持HTTP/2多路复用优化
 - 可配置的chunk命名规则
 - 完善的TypeScript类型支持
 
-##  📦 环境要求
+## 📦 环境要求
 
 - Node.js >= 20.0.0
 - Vite >= 7.0.0
 - rolldown-vite >= 7.0.0
 
-##  🔧 安装
+## 🔧 安装
 
 ```bash
 # 使用npm
@@ -28,13 +28,13 @@ pnpm add @xiaowaibuzheng/rolldown-vite-split-chunks
 yarn add @xiaowaibuzheng/rolldown-vite-split-chunks
 ```
 
-##   🚀 使用方式
+## 🚀 使用方式
 
 ### 基本配置
 
 ```ts
-import { defineConfig } from 'vite'
 import { splitChunks } from '@xiaowaibuzheng/rolldown-vite-split-chunks'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
@@ -61,7 +61,7 @@ splitChunks({
 })
 ```
 
-##  💡 最佳实践
+## 💡 最佳实践
 
 1. **生产环境优化**:
    ```ts
@@ -75,7 +75,7 @@ splitChunks({
 
 - 确保项目使用HTTP/2服务器
 
-##  ❓ 常见问题
+## ❓ 常见问题
 
 **Q: 如何验证分包是否生效？**
 A: 构建后检查dist目录下的chunk文件命名
