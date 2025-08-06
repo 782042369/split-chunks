@@ -1,6 +1,6 @@
 {
   "name": "@xiaowaibuzheng/rolldown-vite-split-chunks",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "rolldown-vite split chunks plugin",
   "main": "es/index.js",
   "module": "es/index.js",
@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "watch": "tsdown --watch",
-    "build":  "tsdown",
+    "build": "tsdown",
     "lint": "eslint --fix",
     "prepublishOnly": "pnpm run build",
     "release": "standard-version && npm publish && git push --tags"

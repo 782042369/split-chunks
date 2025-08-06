@@ -1,6 +1,14 @@
 # 更新记录 
 
 
+### [0.0.14](https://github.com/782042369/split-chunks/compare/v0.0.13...v0.0.14) (2025-08-06)
+
+
+### 📦‍ Build System | 打包构建
+
+* 更新 tsconfig.json 配置 ([bf76ad5](https://github.com/782042369/split-chunks/commit/bf76ad50c07cbcd925f4e1323f1ed72f1e193f51))
+* 简化构建脚本并移除 cross-env 依赖 ([b63b71a](https://github.com/782042369/split-chunks/commit/b63b71a28e505a48a9a1cfa8d51049e334362a28))
+
 ### [0.0.13](https://github.com/782042369/split-chunks/compare/v0.0.12...v0.0.13) (2025-07-21)
 
 
