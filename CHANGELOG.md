@@ -1,6 +1,18 @@
 # 更新记录 
 
 
+### [0.0.15](https://github.com/782042369/split-chunks/compare/v0.0.14...v0.0.15) (2025-08-22)
+
+
+### 📦‍ Build System | 打包构建
+
+* **deps:** 更新项目依赖版本 ([cb5be25](https://github.com/782042369/split-chunks/commit/cb5be2549108f82938673b28bfbaa12143c6c483))
+
+
+### ♻️ Code Refactoring | 代码重构
+
+* **src:** 优化代码以单独打包 vite 库 ([a88e2c7](https://github.com/782042369/split-chunks/commit/a88e2c7fce8347f709615b4d9bc2720ec5d91864))
+
 ### [0.0.14](https://github.com/782042369/split-chunks/compare/v0.0.13...v0.0.14) (2025-08-06)
 
 
