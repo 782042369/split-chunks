@@ -58,6 +58,9 @@ function generateManualChunks(options?: Options): ManualChunksOption {
         )
         return `${options?.vendor_prefix || VENDOR_PREFIX}${name}${isStaticImport ? '' : options?.async_suffix || ASYNC_SUFFIX}`
       }
+      if (id.includes('vite')) {
+        return `${options?.vendor_prefix || VENDOR_PREFIX}vite`
+      }
     },
   )
 }
