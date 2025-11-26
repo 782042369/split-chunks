@@ -2,9 +2,9 @@
   "name": "@xiaowaibuzheng/rolldown-vite-split-chunks",
   "version": "0.0.15",
   "description": "rolldown-vite split chunks plugin",
-  "main": "es/index.js",
-  "module": "es/index.js",
-  "types": "es/index.d.ts",
+  "main": "es/index.mjs",
+  "module": "es/index.mjs",
+  "types": "es/index.d.mts",
   "type": "module",
   "scripts": {
     "watch": "tsdown --watch",
@@ -38,14 +38,15 @@
   "author": "waibuzheng",
   "license": "ISC",
   "devDependencies": {
-    "@antfu/eslint-config": "^5.2.0",
-    "@types/node": "^24.2.0",
-    "eslint-plugin-format": "^1.0.1",
-    "lint-staged": "^16.1.4",
-    "rolldown-vite": "^7.0.12",
+    "@antfu/eslint-config": "^6.2.0",
+    "@types/node": "^24.10.1",
+    "eslint": "^9.39.1",
+    "eslint-plugin-format": "^1.0.2",
+    "lint-staged": "^16.2.7",
+    "rolldown-vite": "^7.2.7",
     "standard-version": "^9.5.0",
-    "tsdown": "^0.13.3",
-    "vite": "npm:rolldown-vite@^7.0.12"
+    "tsdown": "^0.16.7",
+    "vite": "npm:rolldown-vite@^7.2.7"
   },
   "pnpm": {
     "overrides": {
