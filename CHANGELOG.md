@@ -1,6 +1,13 @@
 # 更新记录 
 
 
+### [0.0.16](https://github.com/782042369/split-chunks/compare/v0.0.15...v0.0.16) (2025-11-26)
+
+
+### 📦‍ Build System | 打包构建
+
+* **package:** 更新入口文件格式为 .mjs 和 .d.mts ([de7804c](https://github.com/782042369/split-chunks/commit/de7804cfbabc2853365d8e926bff69cb91aa7823))
+
 ### [0.0.15](https://github.com/782042369/split-chunks/compare/v0.0.14...v0.0.15) (2025-08-22)
 
 
