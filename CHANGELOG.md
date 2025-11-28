@@ -1,6 +1,18 @@
 # 更新记录 
 
 
+### [0.0.17](https://github.com/782042369/split-chunks/compare/v0.0.16...v0.0.17) (2025-11-28)
+
+
+### 📝 Documentation | 文档
+
+* **readme:** 更新 README 文档内容 ([2442932](https://github.com/782042369/split-chunks/commit/2442932c161ec784ad9a36cae5a9dcb541e57614))
+
+
+### 📦‍ Build System | 打包构建
+
+* **deps:** 更新依赖版本并清理 pnpm 配置 ([ada7617](https://github.com/782042369/split-chunks/commit/ada7617b4e5004134fd9c8e61218db721041b523))
+
 ### [0.0.16](https://github.com/782042369/split-chunks/compare/v0.0.15...v0.0.16) (2025-11-26)
 
 
