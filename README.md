@@ -1,11 +1,10 @@
 # @xiaowaibuzheng/rolldown-vite-split-chunks
 
-Vite插件，基于rolldown实现HTTP/2优化的node_modules分包方案
+Vite插件，基于rolldown实现构建node_modules分包方案
 
 ## ✨ 特性
 
 - 自动将node_modules拆分为多个chunk
-- 支持HTTP/2多路复用优化
 - 可配置的chunk命名规则
 - 完善的TypeScript类型支持
 
@@ -70,10 +69,6 @@ splitChunks({
      async_suffix: '.async'
    })
    ```
-
-## ️ 注意事项
-
-- 确保项目使用HTTP/2服务器
 
 ## ❓ 常见问题
 
