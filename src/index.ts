@@ -1,7 +1,6 @@
 import type { ChunkingContext } from 'rolldown-vite/types/internal/rollupTypeCompat'
 import type { Plugin } from 'vite'
 
-import { init } from 'es-module-lexer'
 import assert from 'node:assert'
 import { createLogger } from 'vite'
 
@@ -70,7 +69,6 @@ export function splitChunks(options?: Options): Plugin {
     name: 'rolldown-vite-plugin-chunk-split',
     async config() {
       try {
-        await init
         const manualChunks = generateManualChunks(options)
 
         return {
