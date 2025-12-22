@@ -6,8 +6,8 @@
     "useDefineForClassFields": true, // 使用原生的类字段定义
     "experimentalDecorators": true, // 启用实验性的装饰器支持
     "baseUrl": ".", // 解析非相对模块名的基准目录
-    "module": "ESNext", // 使用最新的模块标准
-    "moduleResolution": "Node", // 使用 Node.js 风格的模块解析
+    "module": "esnext", // 使用最新的模块标准
+    "moduleResolution": "bundler", // 使用 Node.js 风格的模块解析
     "resolveJsonModule": true, // 允许导入 JSON 模块
     "strict": true, // 启用所有严格类型检查选项
     "strictNullChecks": true, // 严格的 null 检查

@@ -1,8 +1,8 @@
-import type { GetModuleInfo } from 'rolldown-vite/types/internal/rollupTypeCompat'
+import type { ChunkingContext } from './type'
 
 export function staticImportedScan(
   id: string,
-  getModuleInfo: GetModuleInfo,
+  getModuleInfo: ChunkingContext['getModuleInfo'],
   cache: Map<string, boolean>,
   importChain: string[] = [],
 ): boolean {

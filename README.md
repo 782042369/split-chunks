@@ -11,8 +11,7 @@ Vite插件，基于rolldown实现构建node_modules分包方案
 ## 📦 环境要求
 
 - Node.js >= 20.0.0
-- Vite >= 7.0.0
-- rolldown-vite >= 7.0.0
+- Vite >= 8.0.0
 
 ## 🔧 安装
 

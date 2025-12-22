@@ -1,12 +1,13 @@
-import type { ChunkingContext } from 'rolldown-vite/types/internal/rollupTypeCompat'
 import type { Plugin } from 'vite'
 
 import assert from 'node:assert'
 import { createLogger } from 'vite'
 
+import type { ChunkingContext } from './type'
+
 import { ASYNC_SUFFIX, NODE_MODULES, VENDOR_PREFIX } from './constants'
-import { staticImportedScan } from './staticImportScan'
-import { nodeName } from './utils'
+import { staticImportedScan } from './staticImportScan.js'
+import { nodeName } from './utils.js'
 
 // 常量定义
 
@@ -73,7 +74,7 @@ export function splitChunks(options?: Options): Plugin {
 
         return {
           build: {
-            rollupOptions: {
+            rolldownOptions: {
               output: {
                 advancedChunks: {
                   groups: [{
