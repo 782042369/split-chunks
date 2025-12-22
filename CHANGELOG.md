@@ -1,6 +1,20 @@
 # 更新记录 
 
 
+### [0.0.18](https://github.com/782042369/split-chunks/compare/v0.0.17...v0.0.18) (2025-12-22)
+
+
+### 📦‍ Build System | 打包构建
+
+* **package:** 更新开发依赖版本 ([229e4f1](https://github.com/782042369/split-chunks/commit/229e4f1c9eaa501e5dff1afb3d7bf9b4462bbb40))
+
+
+### ✨ Features | 新功能
+
+* **plugins:** 移除 es-module-lexer 依赖 ([b4411a3](https://github.com/782042369/split-chunks/commit/b4411a3c3ea6f91a92d08093fdc17ca07cc39af1))
+* **utils:** 移除无用的工具函数并优化 node_modules 路径解析 ([df82d66](https://github.com/782042369/split-chunks/commit/df82d66e10479892cb7278b71855d46369fd0840))
+* **vite:** 升级 Vite 至 8.0.0-beta.3 并适配相关类型 ([40cbff5](https://github.com/782042369/split-chunks/commit/40cbff5278b6cda7739e5a7463fe2a7c6ab3ff6c))
+
 ### [0.0.17](https://github.com/782042369/split-chunks/compare/v0.0.16...v0.0.17) (2025-11-28)
 
 
