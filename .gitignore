@@ -1,5 +1,6 @@
 # Dependencies
 node_modules
+.pnpm-store
 
 # Build output
 es
@@ -7,16 +8,36 @@ dist
 *.log
 
 # IDE
-.vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 .idea
+*.swp
+*.swo
+*~
 
 # OS
 .DS_Store
+Thumbs.db
 
 # Test coverage
 coverage
+.nyc_output
 
 # Environment variables
 .env
 .env.local
 .env.*.local
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Lock files (optional - depending on your preference)
+# pnpm-lock.yaml
+
+# Temporary files
+*.tmp
+.cache
