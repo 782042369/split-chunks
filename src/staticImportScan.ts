@@ -1,8 +1,8 @@
-import type { ChunkingContext } from './type'
+import type { GetModuleInfo } from './type'
 
 export function staticImportedScan(
   id: string,
-  getModuleInfo: ChunkingContext['getModuleInfo'],
+  getModuleInfo: GetModuleInfo,
   cache: Map<string, boolean>,
   importChain: string[] = [],
 ): boolean {

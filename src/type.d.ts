@@ -18,3 +18,9 @@ type ChunksGroups = ArrayElement<ExcludeUndefined<AdvancedChunksOptions>>['group
 export type ChunkingContext = Parameters<
   Exclude<ArrayElement<ExcludeUndefined<ChunksGroups>>['name'], string>
 >[1]
+
+// 定义 getModuleInfo 函数类型
+export type GetModuleInfo = ChunkingContext['getModuleInfo']
+
+// 定义 ModuleInfo 类型用于测试
+export type ModuleInfo = Exclude<ReturnType<GetModuleInfo>, null>
