@@ -44,7 +44,8 @@ export default defineConfig({
 ### 高级配置选项
 
 ```ts
-splitChunks({
+// 配置接口定义
+interface SplitChunksOptions {
   /**
    * vendor chunk前缀，默认: 'p-'
    * 示例: p-react, p-lodash
@@ -56,6 +57,12 @@ splitChunks({
    * 示例: p-react-async
    */
   async_suffix?: string
+}
+
+// 使用示例
+splitChunks({
+  vendor_prefix: 'p-',
+  async_suffix: '-async'
 })
 ```
 
