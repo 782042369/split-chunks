@@ -1,14 +1,14 @@
 import { defineConfig } from 'tsdown'
 
 export default defineConfig({
-  entry: ['src/index.ts'], // 指定入口文件
-  outDir: 'es', // 指定输出目录
-  format: ['esm'], // 生成ESM格式的文件
-  dts: true, // 生成类型定义文件（d.ts）
-  clean: true, // 打包前清除输出目录
+  entry: ['src/index.ts'],
+  outDir: 'es',
+  format: ['esm'],
+  dts: true,
+  clean: true,
   unbundle: true,
   external: [
-    /es-module-lexer/,
-    /vite/,
-  ], // 排除的依赖项
+    /^vite(\/.*)?$/, // vite 及其子路径不打包
+  ],
+  target: 'es2020', // 目标环境，Node.js 20+ 支持的特性
 })
