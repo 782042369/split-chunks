@@ -1,0 +1,21 @@
+{
+  "recommendations": [
+    // ESLint
+    "dbaeumer.vscode-eslint",
+
+    // TypeScript
+    "usernamehw.errorlens",
+
+    // Git
+    "eamodio.gitlens",
+    "github.vscode-pull-request-github",
+
+    // 包管理
+    "antfu.unocss",
+    "vue.volar",
+
+    // 其他工具
+    "streetsidesoftware.code-spell-checker",
+    "editorconfig.editorconfig"
+  ]
+}
