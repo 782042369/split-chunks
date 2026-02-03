@@ -7,7 +7,7 @@ import type { ChunkingContext } from './type'
 
 import { ASYNC_SUFFIX, NODE_MODULES, VENDOR_PREFIX } from './constants'
 import { staticImportedScan } from './staticImportScan.js'
-import { nodeName } from './utils.js'
+import { nodeName } from './utils'
 
 // 常量定义
 
@@ -31,8 +31,9 @@ function wrapCustomSplitConfig(manualChunks: ManualChunksOption): ManualChunksOp
     try {
       return manualChunks(moduleId, { getModuleInfo })
     }
-    catch (error: any) {
-      logger?.error(`Error in manualChunks for ${moduleId}:`, error)
+    catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error)
+      logger?.error(`Error in manualChunks for ${moduleId}: ${message}`)
       return undefined
     }
   }
@@ -57,9 +58,6 @@ function generateManualChunks(options?: Options): ManualChunksOption {
           [],
         )
         return `${options?.vendor_prefix || VENDOR_PREFIX}${name}${isStaticImport ? '' : options?.async_suffix || ASYNC_SUFFIX}`
-      }
-      if (id.includes('vite')) {
-        return `${options?.vendor_prefix || VENDOR_PREFIX}vite`
       }
     },
   )
@@ -90,8 +88,9 @@ export function splitChunks(options?: Options): Plugin {
           },
         }
       }
-      catch (error: any) {
-        logger?.error('Failed to initialize splitChunks plugin:', error)
+      catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error)
+        logger?.error(`Failed to initialize splitChunks plugin: ${message}`)
         throw error
       }
     },
