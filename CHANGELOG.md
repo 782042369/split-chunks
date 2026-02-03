@@ -1,6 +1,31 @@
 # 更新记录 
 
 
+### [0.0.19](https://github.com/782042369/split-chunks/compare/v0.0.18...v0.0.19) (2026-02-03)
+
+
+### ✅ Tests | 测试
+
+* 添加 Vitest 测试框架配置和单元测试 ([0b060de](https://github.com/782042369/split-chunks/commit/0b060de14ccf9def7a60289bc9d397be77db843a))
+
+
+### ♻️ Code Refactoring | 代码重构
+
+* **core:** 改进错误处理并优化代码质量 ([8253196](https://github.com/782042369/split-chunks/commit/8253196f9b6b07bfbc226c91e66b3b7e69fc9b20))
+* **types:** 优化类型定义并提取 GetModuleInfo 类型 ([5f848c1](https://github.com/782042369/split-chunks/commit/5f848c1e9c2f733ceaabe57ebceb9634a2bc937a))
+
+
+### 📝 Documentation | 文档
+
+* 更新 README 文档并添加配置接口定义 ([fba75d7](https://github.com/782042369/split-chunks/commit/fba75d7766b7acacc34846bff22ebe9121327f7e))
+
+
+### 🚀 Chore | 部署相关
+
+* 完善 .gitignore 配置 ([9a9f165](https://github.com/782042369/split-chunks/commit/9a9f165ea1b88ac5822a9682344f959921fb125e))
+* **deps:** 升级依赖并配置 Git Hooks ([fba29ca](https://github.com/782042369/split-chunks/commit/fba29cad86441e5ef3870926aa143e8eae45011b))
+* **vscode:** 添加编辑器配置和扩展推荐 ([583a564](https://github.com/782042369/split-chunks/commit/583a56452b5ffac9df2bf8d372260afdf9c7facc))
+
 ### [0.0.18](https://github.com/782042369/split-chunks/compare/v0.0.17...v0.0.18) (2025-12-22)
 
 
