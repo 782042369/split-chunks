@@ -10,9 +10,9 @@ type ArrayElement<T> = T extends Array<infer U> ? U : T
 type RplldownOutputOptions = ExcludeUndefined<BuildEnvironmentOptions['rolldownOptions']>['output']
 type OutputOptions = ExcludeUndefined<RplldownOutputOptions>
 
-// 提取advancedChunks配置类型
-type AdvancedChunksOptions = ArrayElement<OutputOptions>['advancedChunks']
-type ChunksGroups = ArrayElement<ExcludeUndefined<AdvancedChunksOptions>>['groups']
+// 提取codeSplitting配置类型
+type CodeSplittingOptions = Exclude<ExcludeUndefined<ArrayElement<OutputOptions>['codeSplitting']>, boolean>
+type ChunksGroups = CodeSplittingOptions['groups']
 
 // 定义ChunkingContext类型
 export type ChunkingContext = Parameters<

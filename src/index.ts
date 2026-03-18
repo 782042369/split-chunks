@@ -1,9 +1,9 @@
 import type { Plugin } from 'vite'
 
-import assert from 'node:assert'
-import { createLogger } from 'vite'
-
 import type { ChunkingContext } from './type'
+import assert from 'node:assert'
+
+import { createLogger } from 'vite'
 
 import { ASYNC_SUFFIX, NODE_MODULES, VENDOR_PREFIX } from './constants'
 import { staticImportedScan } from './staticImportScan.js'
@@ -74,7 +74,7 @@ export function splitChunks(options?: Options): Plugin {
           build: {
             rolldownOptions: {
               output: {
-                advancedChunks: {
+                codeSplitting: {
                   groups: [{
                     name(moduleId, ctx) {
                       return manualChunks(moduleId, {

@@ -1,6 +1,6 @@
-import { describe, expect, it, vi } from 'vitest'
-
 import type { ModuleInfo } from './type'
+
+import { describe, expect, it, vi } from 'vitest'
 
 import { staticImportedScan } from './staticImportScan'
 

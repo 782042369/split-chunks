@@ -1,6 +1,6 @@
-import { describe, expect, it, vi } from 'vitest'
-
 import type { ModuleInfo } from './type'
+
+import { describe, expect, it, vi } from 'vitest'
 
 import { ASYNC_SUFFIX, VENDOR_PREFIX } from './constants/index'
 import { splitChunks } from './index'
@@ -23,9 +23,11 @@ describe('splitChunks plugin', () => {
     expect(config?.build).toBeDefined()
     expect(config?.build?.rolldownOptions).toBeDefined()
     expect(config?.build?.rolldownOptions?.output).toBeDefined()
-    expect(config?.build?.rolldownOptions?.output?.advancedChunks).toBeDefined()
-    expect(config?.build?.rolldownOptions?.output?.advancedChunks?.groups).toBeDefined()
-    expect(config?.build?.rolldownOptions?.output?.advancedChunks?.groups).toHaveLength(1)
+    expect(config?.build?.rolldownOptions?.output?.codeSplitting).toBeDefined()
+    expect(config?.build?.rolldownOptions?.output?.codeSplitting).not.toBe(true)
+    expect(config?.build?.rolldownOptions?.output?.codeSplitting).not.toBe(false)
+    expect(config?.build?.rolldownOptions?.output?.codeSplitting?.groups).toBeDefined()
+    expect(config?.build?.rolldownOptions?.output?.codeSplitting?.groups).toHaveLength(1)
   })
 
   it('应该支持自定义 vendor_prefix', async () => {
@@ -34,7 +36,7 @@ describe('splitChunks plugin', () => {
     const config = await plugin.config!({}, { mode: 'build' })
 
     expect(config).toBeDefined()
-    const manualChunks = config?.build?.rolldownOptions?.output?.advancedChunks?.groups![0].name
+    const manualChunks = config?.build?.rolldownOptions?.output?.codeSplitting?.groups![0].name
 
     // 测试 node_modules 模块
     const result = manualChunks!('/path/to/node_modules/react/index.js', {
@@ -49,7 +51,7 @@ describe('splitChunks plugin', () => {
     const config = await plugin.config!({}, { mode: 'build' })
 
     expect(config).toBeDefined()
-    const manualChunks = config?.build?.rolldownOptions?.output?.advancedChunks?.groups![0].name
+    const manualChunks = config?.build?.rolldownOptions?.output?.codeSplitting?.groups![0].name
 
     // 测试动态导入的 node_modules 模块
     const result = manualChunks!('/path/to/node_modules/react/index.js', {
@@ -62,7 +64,7 @@ describe('splitChunks plugin', () => {
     const plugin = splitChunks()
     // @ts-expect-error 测试环境中传入空参数
     const config = await plugin.config!({}, { mode: 'build' })
-    const manualChunks = config?.build?.rolldownOptions?.output?.advancedChunks?.groups![0].name
+    const manualChunks = config?.build?.rolldownOptions?.output?.codeSplitting?.groups![0].name
 
     // 静态导入的 node_modules 模块 - 模拟被入口模块导入
     const modules = new Map<string, ModuleInfo>([
@@ -87,7 +89,7 @@ describe('splitChunks plugin', () => {
     const plugin = splitChunks()
     // @ts-expect-error 测试环境中传入空参数
     const config = await plugin.config!({}, { mode: 'build' })
-    const manualChunks = config?.build?.rolldownOptions?.output?.advancedChunks?.groups![0].name
+    const manualChunks = config?.build?.rolldownOptions?.output?.codeSplitting?.groups![0].name
 
     const result = manualChunks!('/path/to/src/index.js', {
       getModuleInfo: vi.fn((): ModuleInfo | null => ({ importers: [], isEntry: false })),
@@ -99,7 +101,7 @@ describe('splitChunks plugin', () => {
     const plugin = splitChunks()
     // @ts-expect-error 测试环境中传入空参数
     const config = await plugin.config!({}, { mode: 'build' })
-    const manualChunks = config?.build?.rolldownOptions?.output?.advancedChunks?.groups![0].name
+    const manualChunks = config?.build?.rolldownOptions?.output?.codeSplitting?.groups![0].name
 
     // .pnpm 路径应该被忽略，使用默认 'vendor'
     const result = manualChunks!('/path/to/node_modules/.pnpm/react@18.0.0/node_modules/react/index.js', {
@@ -112,7 +114,7 @@ describe('splitChunks plugin', () => {
     const plugin = splitChunks()
     // @ts-expect-error 测试环境中传入空参数
     const config = await plugin.config!({}, { mode: 'build' })
-    const manualChunks = config?.build?.rolldownOptions?.output?.advancedChunks?.groups![0].name
+    const manualChunks = config?.build?.rolldownOptions?.output?.codeSplitting?.groups![0].name
 
     // 模拟被入口模块导入，只提取 scoped 包名的第一部分
     const modules = new Map<string, ModuleInfo>([
@@ -132,7 +134,7 @@ describe('splitChunks plugin', () => {
     const plugin = splitChunks()
     // @ts-expect-error 测试环境中传入空参数
     const config = await plugin.config!({}, { mode: 'build' })
-    const manualChunks = config?.build?.rolldownOptions?.output?.advancedChunks?.groups![0].name
+    const manualChunks = config?.build?.rolldownOptions?.output?.codeSplitting?.groups![0].name
 
     // 模拟 getModuleInfo 抛出错误
     const result = manualChunks!('/path/to/node_modules/react/index.js', {
@@ -163,7 +165,7 @@ describe('generateManualChunks', () => {
 
     expect(config?.build?.rolldownOptions).toEqual({
       output: {
-        advancedChunks: {
+        codeSplitting: {
           groups: [
             {
               name: expect.any(Function),
@@ -179,8 +181,9 @@ describe('generateManualChunks', () => {
     // @ts-expect-error 测试环境中传入空参数
     const config = await plugin.config!({}, { mode: 'build' })
 
-    // 验证使用了 advancedChunks 而不是旧的 manualChunks
-    expect(config?.build?.rolldownOptions?.output?.advancedChunks).toBeDefined()
+    // 验证使用了 codeSplitting 而不是已废弃的 advancedChunks
+    expect(config?.build?.rolldownOptions?.output?.codeSplitting).toBeDefined()
+    expect(config?.build?.rolldownOptions?.output?.advancedChunks).toBeUndefined()
     expect(config?.build?.rolldownOptions?.output?.manualChunks).toBeUndefined()
   })
 })
