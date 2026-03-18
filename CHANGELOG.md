@@ -1,6 +1,13 @@
 # 更新记录 
 
 
+### [0.0.21](https://github.com/782042369/split-chunks/compare/v0.0.20...v0.0.21) (2026-03-18)
+
+
+### ♻️ Code Refactoring | 代码重构
+
+* **utils:** 优化 nodeName 函数实现 ([3a2efc7](https://github.com/782042369/split-chunks/commit/3a2efc7fce3255f1ef3ee07d22f5f4ad88117404))
+
 ### [0.0.20](https://github.com/782042369/split-chunks/compare/v0.0.19...v0.0.20) (2026-03-18)
 
 
