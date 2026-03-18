@@ -1,6 +1,19 @@
 # 更新记录 
 
 
+### [0.0.20](https://github.com/782042369/split-chunks/compare/v0.0.19...v0.0.20) (2026-03-18)
+
+
+### ✨ Features | 新功能
+
+* 适配 Vite 8 代码分割 API 变更 ([0b1c63d](https://github.com/782042369/split-chunks/commit/0b1c63d3755a7d8bba0f125a62804ade4459d89d))
+
+
+### 🚀 Chore | 部署相关
+
+* 更新项目配置 ([7000698](https://github.com/782042369/split-chunks/commit/7000698b20d36c719a6a4b0ea937c63c2d3b1b8c))
+* 升级开发依赖到最新版本 ([4294605](https://github.com/782042369/split-chunks/commit/42946054391c2b5d9e3577a77c3ffbad3ecaf95c))
+
 ### [0.0.19](https://github.com/782042369/split-chunks/compare/v0.0.18...v0.0.19) (2026-02-03)
 
 
