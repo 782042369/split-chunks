@@ -14,9 +14,9 @@ describe('nodeName', () => {
     expect(nodeName('/path/to/node_modules/@types/node/index.d.ts')).toBe('@types')
   })
 
-  it('应该忽略 .pnpm 路径', () => {
-    expect(nodeName('/path/to/node_modules/.pnpm/vue-demi@0.14.10_vue@3.5.26_typescript@5.9.3_/node_modules/vue/index.mjs')).toBeUndefined()
-    expect(nodeName('/path/to/node_modules/.pnpm/registry.npmjs.org+react@18.0.0/node_modules/react/index.js')).toBeUndefined()
+  it('应该从 .pnpm 路径中提取真实包名', () => {
+    expect(nodeName('/path/to/node_modules/.pnpm/vue-demi@0.14.10_vue@3.5.26_typescript@5.9.3_/node_modules/vue/index.mjs')).toBe('vue')
+    expect(nodeName('/path/to/node_modules/.pnpm/registry.npmjs.org+react@18.0.0/node_modules/react/index.js')).toBe('react')
   })
 
   it('对于非 node_modules 路径应该返回 undefined', () => {

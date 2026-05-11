@@ -2,7 +2,7 @@ import type { ModuleInfo } from './type'
 
 import { describe, expect, it, vi } from 'vitest'
 
-import { ASYNC_SUFFIX, VENDOR_PREFIX } from './constants/index'
+import { ASYNC_SUFFIX, MIN_SIZE, NODE_MODULES_RE, VENDOR_PREFIX } from './constants/index'
 import { splitChunks } from './index'
 
 describe('splitChunks plugin', () => {
@@ -11,6 +11,7 @@ describe('splitChunks plugin', () => {
 
     expect(plugin).toBeDefined()
     expect(plugin.name).toBe('rolldown-vite-plugin-chunk-split')
+    expect(plugin.apply).toBe('build')
     expect(typeof plugin.config).toBe('function')
   })
 
@@ -22,12 +23,17 @@ describe('splitChunks plugin', () => {
     expect(config).toBeDefined()
     expect(config?.build).toBeDefined()
     expect(config?.build?.rolldownOptions).toBeDefined()
+    expect(config?.build?.rolldownOptions?.preserveEntrySignatures).toBe('allow-extension')
     expect(config?.build?.rolldownOptions?.output).toBeDefined()
+    expect(config?.build?.rolldownOptions?.output?.strictExecutionOrder).toBe(true)
     expect(config?.build?.rolldownOptions?.output?.codeSplitting).toBeDefined()
     expect(config?.build?.rolldownOptions?.output?.codeSplitting).not.toBe(true)
     expect(config?.build?.rolldownOptions?.output?.codeSplitting).not.toBe(false)
+    expect(config?.build?.rolldownOptions?.output?.codeSplitting?.includeDependenciesRecursively).toBe(false)
     expect(config?.build?.rolldownOptions?.output?.codeSplitting?.groups).toBeDefined()
     expect(config?.build?.rolldownOptions?.output?.codeSplitting?.groups).toHaveLength(1)
+    expect(config?.build?.rolldownOptions?.output?.codeSplitting?.groups?.[0].test).toBe(NODE_MODULES_RE)
+    expect(config?.build?.rolldownOptions?.output?.codeSplitting?.groups?.[0].minSize).toBe(MIN_SIZE)
   })
 
   it('应该支持自定义 vendor_prefix', async () => {
@@ -60,6 +66,24 @@ describe('splitChunks plugin', () => {
     expect(result).toMatch(/\.async$/)
   })
 
+  it('应该支持自定义每包独立 chunk 的最小体积', async () => {
+    const plugin = splitChunks({ min_size: 0 })
+    // @ts-expect-error 测试环境中传入空参数
+    const config = await plugin.config!({}, { mode: 'build' })
+
+    expect(config?.build?.rolldownOptions?.output?.codeSplitting?.groups?.[0].minSize).toBe(0)
+  })
+
+  it('应该允许恢复 Rolldown 默认递归依赖吸收策略', async () => {
+    const plugin = splitChunks({ include_dependencies_recursively: true })
+    // @ts-expect-error 测试环境中传入空参数
+    const config = await plugin.config!({}, { mode: 'build' })
+
+    expect(config?.build?.rolldownOptions?.preserveEntrySignatures).toBeUndefined()
+    expect(config?.build?.rolldownOptions?.output?.strictExecutionOrder).toBeUndefined()
+    expect(config?.build?.rolldownOptions?.output?.codeSplitting?.includeDependenciesRecursively).toBe(true)
+  })
+
   it('应该正确处理 node_modules 模块', async () => {
     const plugin = splitChunks()
     // @ts-expect-error 测试环境中传入空参数
@@ -78,7 +102,7 @@ describe('splitChunks plugin', () => {
     })
     expect(staticResult).toBe(`${VENDOR_PREFIX}react`)
 
-    // 动态导入的 node_modules 模块
+    // 动态导入的 node_modules 模块默认也复用同一个包名 chunk，最大化 HTTP 缓存命中。
     const dynamicResult = manualChunks!('/path/to/node_modules/react/index.js', {
       getModuleInfo: vi.fn((): ModuleInfo | null => ({ importers: [], isEntry: false })),
     })
@@ -103,15 +127,15 @@ describe('splitChunks plugin', () => {
     const config = await plugin.config!({}, { mode: 'build' })
     const manualChunks = config?.build?.rolldownOptions?.output?.codeSplitting?.groups![0].name
 
-    // .pnpm 路径应该被忽略，使用默认 'vendor'
+    // nodeName 保持现有行为：从 .pnpm 路径中继续提取真实包名。
     const result = manualChunks!('/path/to/node_modules/.pnpm/react@18.0.0/node_modules/react/index.js', {
       getModuleInfo: vi.fn((): ModuleInfo | null => ({ importers: [], isEntry: true })),
     })
-    expect(result).toBe(`${VENDOR_PREFIX}vendor`)
+    expect(result).toBe(`${VENDOR_PREFIX}react`)
   })
 
   it('应该正确处理 @scope 包名', async () => {
-    const plugin = splitChunks()
+    const plugin = splitChunks({ async_suffix: '.async' })
     // @ts-expect-error 测试环境中传入空参数
     const config = await plugin.config!({}, { mode: 'build' })
     const manualChunks = config?.build?.rolldownOptions?.output?.codeSplitting?.groups![0].name
@@ -131,7 +155,7 @@ describe('splitChunks plugin', () => {
   })
 
   it('应该处理配置函数中的错误', async () => {
-    const plugin = splitChunks()
+    const plugin = splitChunks({ async_suffix: '.async' })
     // @ts-expect-error 测试环境中传入空参数
     const config = await plugin.config!({}, { mode: 'build' })
     const manualChunks = config?.build?.rolldownOptions?.output?.codeSplitting?.groups![0].name
@@ -164,10 +188,15 @@ describe('generateManualChunks', () => {
     const config = await plugin.config!({}, { mode: 'build' })
 
     expect(config?.build?.rolldownOptions).toEqual({
+      preserveEntrySignatures: 'allow-extension',
       output: {
+        strictExecutionOrder: true,
         codeSplitting: {
+          includeDependenciesRecursively: false,
           groups: [
             {
+              test: NODE_MODULES_RE,
+              minSize: MIN_SIZE,
               name: expect.any(Function),
             },
           ],
