@@ -1,6 +1,19 @@
 # 更新记录 
 
 
+### [0.0.22](https://github.com/782042369/split-chunks/compare/v0.0.21...v0.0.22) (2026-05-11)
+
+
+### 🚀 Chore | 部署相关
+
+* **config:** 迁移 tsdown 配置 API ([d3e1f89](https://github.com/782042369/split-chunks/commit/d3e1f897d3c56daa57b07ff13196f5f71b997199))
+* **deps:** 升级 Vite 8 相关开发依赖 ([e11583e](https://github.com/782042369/split-chunks/commit/e11583e0a0afe71cb70c5ebf8db9f92a3d0f793e))
+
+
+### ✨ Features | 新功能
+
+* **plugin:** 优化 node_modules 分包默认策略 ([95c8a2f](https://github.com/782042369/split-chunks/commit/95c8a2f4b946ea5b857c07cc97a7c4665ecfa4a6))
+
 ### [0.0.21](https://github.com/782042369/split-chunks/compare/v0.0.20...v0.0.21) (2026-03-18)
 
 
